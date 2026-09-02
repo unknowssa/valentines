@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar">
+    <span class="progress-step active" data-step="1">My Feelings</span>
+    <span class="progress-sep">—</span>
+    <span class="progress-step" data-step="2">My Question</span>
+    <span class="progress-sep">—</span>
+    <span class="progress-step" data-step="3">Your Answer</span>
+    <span class="progress-sep">—</span>
+    <span class="progress-step" data-step="4">Our Future</span>
+  </div>
+</div>
+
+<!-- PAGE 1 : OPENING -->
+<section class="page active" id="page1">
+  <div class="inner glass">
+    <svg class="heart-svg" viewBox="0 0 100 90">
+      <defs>
+        <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#E8A0BF"/>
+          <stop offset="100%" stop-color="#9B7FC7"/>
+        </linearGradient>
+      </defs>
+      <path class="heart-fill" d="M50 82 C20 60 4 40 4 22 C4 8 15 0 27 0 C37 0 45 6 50 15 C55 6 63 0 73 0 C85 0 96 8 96 22 C96 40 80 60 50 82 Z"/>
+      <path class="heart-path" d="M50 82 C20 60 4 40 4 22 C4 8 15 0 27 0 C37 0 45 6 50 15 C55 6 63 0 73 0 C85 0 96 8 96 22 C96 40 80 60 50 82 Z"/>
+    </svg>
+    <p class="eyebrow">a small confession</p>
+    <p class="lead">There's something I've been wanting to tell you for a while...</p>
+    <p class="sub">Nothing scary. Just something honest. Whenever you're ready.</p>
+    <button class="btn" onclick="goTo('page2')">Open My Heart ❤️</button>
+  </div>
+</section>
+
+<!-- PAGE 2 : CONFESSION -->
+<section class="page" id="page2">
+  <div class="inner glass">
+    <p class="eyebrow">my confession</p>
+    <div class="letter" contenteditable="true" id="letterText">I don't know exactly when it happened, but somehow you became someone very special to me. I love talking to you, seeing you smile, and having you in my life. I don't want to rush anything, but I want to be honest about how I feel.</div>
+    <p class="letter-hint">Something you like</p>
+    <button class="btn" onclick="goTo('page3')">There's Something I Want to Ask You...</button>
+  </div>
+</section>
+
+<!-- PAGE 3 : THE QUESTION -->
+<section class="page" id="page3">
+  <div class="inner glass">
+    <p class="eyebrow">the question</p>
+    <p class="lead">Would you give me a chance to be someone special in your life?</p>
+    <div style="margin-top:30px;">
+      <button class="choice-btn" onclick="chooseAnswer('yes')"><span class="emoji">❤️</span>YES</button>
+      <button class="choice-btn" onclick="chooseAnswer('maybe')"><span class="emoji">🤔</span>MAYBE / GIVE ME TIME</button>
+      <button class="choice-btn" onclick="chooseAnswer('no')"><span class="emoji">💔</span>NO</button>
+    </div>
+    <p class="sub" style="margin-top:22px; font-size:13.5px;">Whatever you choose, it's completely okay. This is your decision, fully and only yours.</p>
+  </div>
+</section>
+
+<!-- PAGE YES -->
+<section class="page" id="pageYes">
+  <div class="inner glass">
+    <p class="lead" id="yesThanks">Thank you for giving me a chance. ❤️</p>
+    <p class="sub">I promise to value you, respect you, communicate honestly, and make this relationship something we can both be proud of.</p>
+    <h3 style="margin-top:30px; font-style:italic;">Our Commitment</h3>
+    <ul class="commit-list">
+      <li>Honest communication</li>
+      <li>Mutual respect</li>
+      <li>Supporting each other</li>
+      <li>Being patient with each other</li>
+      <li>Growing together</li>
+      <li>Respecting boundaries</li>
+      <li>Staying genuine and loyal</li>
+    </ul>
+    <p class="lead" style="font-size:24px; margin-top:28px;">Let's start this journey together. ❤️</p>
+    <button class="btn" onclick="goTo('pageFinal')">Continue</button>
+  </div>
+</section>
+
+<!-- PAGE MAYBE -->
+<section class="page" id="pageMaybe">
+  <div class="inner glass">
+    <p class="lead">That's completely okay. ❤️</p>
+    <p class="sub">You don't have to decide right away. Take all the time you need. Whatever your answer is, I'll respect it.</p>
+    <div class="btn-row">
+      <button class="btn" onclick="goTo('pageFinal')">Tell Me When You're Ready</button>
+      <button class="btn btn-ghost" onclick="goTo('page1')">Close for now</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE NO -->
+<section class="page" id="pageNo">
+  <div class="inner glass">
+    <p class="lead">Thank you for being honest with me. ❤️</p>
+    <p class="sub">I respect your decision, and I don't want you to feel pressured or uncomfortable. I'm grateful that you listened to my feelings.</p>
+    <button class="btn btn-ghost" onclick="goTo('pageFinal')" style="margin-top:20px;">Leave a note for me (optional)</button>
+  </div>
+</section>
+
+<!-- PAGE FINAL : HER ANSWER -->
+<section class="page" id="pageFinal">
+  <div class="inner glass">
+    <p class="eyebrow">for the record, if you'd like</p>
+    <h2 style="font-style:italic; margin-top:0;">Your Answer</h2>
+    <p class="sub" style="margin-bottom:22px;">This part is completely optional — only fill it in if you want to.</p>
+    <form id="answerForm" onsubmit="submitAnswer(event)">
+      <!-- Web3Forms: replace with the access key from https://web3forms.com -->
+      <input type="hidden" name="access_key" value="0bca9dd0-0101-42d8-b68d-38b13979eafe">
+      <input type="hidden" name="subject" value="💌 New answer from the confession page">
+      <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off">
+      <div class="field">
+        <label for="herName">Your name</label>
+        <input type="text" id="herName" name="name" placeholder="Your name">
+      </div>
+      <div class="field">
+        <label for="herAnswer">Your answer</label>
+        <input type="text" id="herAnswer" name="answer" placeholder="Yes / Maybe / No / anything you'd like to say">
+      </div>
+      <div class="field">
+        <label for="herMessage">A short message (optional)</label>
+        <textarea id="herMessage" name="message" placeholder="Write anything you want me to know..."></textarea>
+      </div>
+      <div class="field">
+        <label for="herDate">Date (optional)</label>
+        <input type="date" id="herDate" name="date">
+      </div>
+      <button type="submit" class="btn">Submit My Answer</button>
+    </form>
+    <div class="confirm-box" id="confirmBox">Received, with a full heart. Thank you for telling me. 🤍</div>
+  </div>
+</section>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle background music">
+  <span class="note" id="musicIcon">♪</span>
+</button>
+<audio id="bgMusic" loop>
+  <!-- Put your own song file next to this HTML (e.g. sugarcane.mp3) or change the src below -->
+  <source src="sugarcane.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js" defer></script>
+</body>
+</html>
